@@ -21,7 +21,7 @@ export const performOperation = (
   // If first operand is divided by 0 - return Error
   if (parseFloat(secondOperand.join("")) == 0 && operator == "/") {
     dispatch(setHasError(true));
-    dispatch(setResult("Error"));
+    dispatch(setResult("Division by 0"));
     return;
   }
 

@@ -8,7 +8,6 @@ import { performOperation } from "../utils/performOperation";
 import { clearAll } from "../utils/clearAll";
 import {
   setHasError,
-  setDisplay,
   setResult,
 } from "../redux/features/calculatorSlice";
 
@@ -60,11 +59,11 @@ const Calculator = () => {
     let entireDisplay = calculatorState.display.join("");
     if (entireDisplay.length > 22) {
       dispatch(setHasError(true));
-      dispatch(setDisplay(["Error"]));
-      dispatch(setResult("Error"));
+      dispatch(setResult("Too large numbers"));
     }
     if (calculatorState.result.length > 25) {
       dispatch(setHasError(true));
+      dispatch(setResult("Too large numbers"));
     }
   }, [calculatorState.display, calculatorState.result]);
 
