@@ -14,11 +14,12 @@ export const performOperation = (
   dispatch,
   callback = null
 ) => {
-  // If first operand is divided by 0 or second operand is empty - return Error
-  if (
-    (parseFloat(secondOperand.join("")) == 0 && operator == "/") ||
-    secondOperand.length < 1
-  ) {
+  // If second operand is empty - return
+  if (secondOperand.length < 1) {
+    return;
+  }
+  // If first operand is divided by 0 - return Error
+  if (parseFloat(secondOperand.join("")) == 0 && operator == "/") {
     dispatch(setHasError(true));
     dispatch(setResult("Error"));
     return;
