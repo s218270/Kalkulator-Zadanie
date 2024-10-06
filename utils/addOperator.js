@@ -11,6 +11,7 @@ import {
 } from "../redux/features/calculatorSlice";
 import { performOperation } from "../utils/performOperation";
 
+
 export const addOperator = (
   operator,
   hasError,
@@ -18,8 +19,10 @@ export const addOperator = (
   secondOperand,
   isOperatorUsed,
   display,
+  calculatorState,
   dispatch
 ) => {
+
   if (hasError) return;
 
   if (!isOperatorUsed) {
@@ -34,7 +37,7 @@ export const addOperator = (
     performOperation(
       firstOperand,
       secondOperand,
-      operator,
+      calculatorState.operator,
       dispatch,
       (result) => {
         dispatch(setFirstOperand([result]));

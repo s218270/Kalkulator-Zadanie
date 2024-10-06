@@ -41,6 +41,7 @@ const Calculator = () => {
       calculatorState.secondOperand,
       calculatorState.isOperatorUsed,
       calculatorState.display,
+      calculatorState,
       dispatch
     );
   };
