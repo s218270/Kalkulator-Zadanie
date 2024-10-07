@@ -85,9 +85,13 @@ const Calculator = () => {
         handleNumberClick(Number(key)); // Call appendNumber with the pressed key as a number
       }
       if (userLanguage == "pl-PL" && key == ",") {
+        // Immediately block input if blockUserInput is true
+        if (blockUserInputRef.current) return; // This uses the latest blockUserInput value
         handleNumberClick(".");
       }
       if (userLanguage != "pl-PL" && key == ".") {
+        // Immediately block input if blockUserInput is true
+        if (blockUserInputRef.current) return; // This uses the latest blockUserInput value
         handleNumberClick(".");
       }
       if (key == "/" || key == "*" || key == "+" || key == "-") {
