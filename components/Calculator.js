@@ -6,10 +6,7 @@ import { appendNumber } from "../utils/appendNumber";
 import { addOperator } from "../utils/addOperator";
 import { performOperation } from "../utils/performOperation";
 import { clearAll } from "../utils/clearAll";
-import {
-  setHasError,
-  setResult,
-} from "../redux/features/calculatorSlice";
+import { setHasError, setResult } from "../redux/features/calculatorSlice";
 
 const Calculator = () => {
   const dispatch = useDispatch();
@@ -50,6 +47,7 @@ const Calculator = () => {
       calculatorState.firstOperand,
       calculatorState.secondOperand,
       calculatorState.operator,
+      calculatorState.display,
       dispatch
     );
   };

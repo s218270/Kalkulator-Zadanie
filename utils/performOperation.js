@@ -5,12 +5,14 @@ import {
   setHasError,
   setBlockUserInput,
   setIsCommaUsedInSecond,
+  setDisplay,
 } from "../redux/features/calculatorSlice";
 
 export const performOperation = (
   firstOperand,
   secondOperand,
   operator,
+  display,
   dispatch,
   callback = null
 ) => {
@@ -18,6 +20,14 @@ export const performOperation = (
   if (secondOperand.length < 1) {
     return;
   }
+
+  // If second operand has "." at the end - pop it
+  if (secondOperand[secondOperand.length - 1] == ".") {
+    let newDisplay = [...display];
+    newDisplay.pop();
+    dispatch(setDisplay(newDisplay));
+  }
+
   // If first operand is divided by 0 - return Error
   if (parseFloat(secondOperand.join("")) == 0 && operator == "/") {
     dispatch(setHasError(true));

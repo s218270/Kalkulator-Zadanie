@@ -11,7 +11,6 @@ import {
 } from "../redux/features/calculatorSlice";
 import { performOperation } from "../utils/performOperation";
 
-
 export const addOperator = (
   operator,
   hasError,
@@ -22,13 +21,19 @@ export const addOperator = (
   calculatorState,
   dispatch
 ) => {
-
   if (hasError) return;
 
   if (!isOperatorUsed) {
+    // If first operand has "." at the end - pop it
+    if (firstOperand[firstOperand.length - 1] == ".") {
+      let newDisplay = [...display];
+      newDisplay.pop();
+      dispatch(setDisplay([...newDisplay, operator]));
+    } else {
+      dispatch(setDisplay([...display, operator]));
+    }
     dispatch(setCurrentOperand(2));
     dispatch(setOperator(operator));
-    dispatch(setDisplay([...display, operator]));
     dispatch(setIsOperatorUsed(true));
   }
 
@@ -38,6 +43,7 @@ export const addOperator = (
       firstOperand,
       secondOperand,
       calculatorState.operator,
+      display,
       dispatch,
       (result) => {
         dispatch(setFirstOperand([result]));
